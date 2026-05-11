@@ -1,0 +1,156 @@
+{
+  "meta": {
+    "name": "Levente's AI Stack",
+    "description": "A full-featured Claude Code setup with superpowers, Figma, Atlassian, Slack, GitHub, and Chrome DevTools — built for product and engineering work.",
+    "author": "lhernadi",
+    "version": "1.0.0",
+    "commit_sha": ""
+  },
+  "apps": [
+    {
+      "id": "claude",
+      "type": "homebrew-cask",
+      "description": "Claude Code — the AI coding assistant this stack is built around"
+    },
+    {
+      "id": "node",
+      "type": "homebrew-cask",
+      "description": "Node.js — required to run MCP servers via npx"
+    }
+  ],
+  "plugins": [
+    {
+      "id": "superpowers@claude-plugins-official",
+      "description": "Superpowers — skills, agents, brainstorming, TDD, planning, and more. The backbone of this stack."
+    },
+    {
+      "id": "github@claude-plugins-official",
+      "description": "GitHub — create PRs, review issues, search repos, and manage code directly from Claude"
+    },
+    {
+      "id": "atlassian@claude-plugins-official",
+      "description": "Atlassian — search Jira and Confluence, create issues, write specs, and run standup reports"
+    },
+    {
+      "id": "slack@claude-plugins-official",
+      "description": "Slack — summarize channels, find discussions, draft announcements, and generate standups"
+    },
+    {
+      "id": "figma@claude-plugins-official",
+      "description": "Figma — read designs, implement UI from Figma files, and manage code connect mappings"
+    },
+    {
+      "id": "chrome-devtools-mcp@claude-plugins-official",
+      "description": "Chrome DevTools — debug web apps, audit performance, and automate browser interactions from Claude"
+    }
+  ],
+  "mcp_servers": [
+    {
+      "package": "@modelcontextprotocol/server-github",
+      "name": "github",
+      "env_keys": ["GITHUB_PERSONAL_ACCESS_TOKEN"],
+      "description": "GitHub MCP server — gives Claude direct access to your repos, PRs, and issues"
+    },
+    {
+      "package": "@modelcontextprotocol/server-confluence",
+      "name": "confluence",
+      "env_keys": ["CONFLUENCE_API_TOKEN", "CONFLUENCE_EMAIL", "CONFLUENCE_URL"],
+      "description": "Confluence MCP server — lets Claude read and write your company wiki pages"
+    },
+    {
+      "package": "@modelcontextprotocol/server-jira",
+      "name": "jira",
+      "env_keys": ["JIRA_API_TOKEN", "JIRA_EMAIL", "JIRA_URL"],
+      "description": "Jira MCP server — lets Claude create, search, and update Jira issues"
+    },
+    {
+      "package": "figma-developer-mcp",
+      "name": "figma",
+      "env_keys": ["FIGMA_API_KEY"],
+      "description": "Figma MCP server — gives Claude access to your Figma files and design tokens"
+    },
+    {
+      "package": "chrome-devtools-mcp",
+      "name": "chrome-devtools",
+      "env_keys": [],
+      "description": "Chrome DevTools MCP server — connects Claude to a running Chrome instance for debugging"
+    }
+  ],
+  "credentials": [
+    {
+      "key": "ANTHROPIC_API_KEY",
+      "label": "Anthropic API Key",
+      "help": "Create an account at console.anthropic.com, go to API Keys, and generate a new key",
+      "help_url": "https://console.anthropic.com/settings/keys",
+      "maps_to": "env.ANTHROPIC_AUTH_TOKEN"
+    },
+    {
+      "key": "GITHUB_PERSONAL_ACCESS_TOKEN",
+      "label": "GitHub Personal Access Token",
+      "help": "Go to GitHub → Settings → Developer settings → Personal access tokens → Generate new token. Needs repo, read:org scopes.",
+      "help_url": "https://github.com/settings/tokens/new",
+      "maps_to": "env.GITHUB_PERSONAL_ACCESS_TOKEN"
+    },
+    {
+      "key": "CONFLUENCE_API_TOKEN",
+      "label": "Atlassian API Token (for Confluence)",
+      "help": "Go to id.atlassian.com → Security → Create and manage API tokens",
+      "help_url": "https://id.atlassian.com/manage-profile/security/api-tokens",
+      "maps_to": "env.CONFLUENCE_API_TOKEN"
+    },
+    {
+      "key": "CONFLUENCE_EMAIL",
+      "label": "Your Atlassian Email",
+      "help": "The email address you use to log in to Confluence/Jira",
+      "help_url": "https://id.atlassian.com/manage-profile",
+      "maps_to": "env.CONFLUENCE_EMAIL"
+    },
+    {
+      "key": "CONFLUENCE_URL",
+      "label": "Confluence Base URL",
+      "help": "Your Confluence wiki URL, e.g. https://yourcompany.atlassian.net/wiki",
+      "help_url": "https://support.atlassian.com/confluence-cloud/",
+      "maps_to": "env.CONFLUENCE_URL"
+    },
+    {
+      "key": "JIRA_API_TOKEN",
+      "label": "Atlassian API Token (for Jira)",
+      "help": "Same token as Confluence — go to id.atlassian.com → Security → API tokens",
+      "help_url": "https://id.atlassian.com/manage-profile/security/api-tokens",
+      "maps_to": "env.JIRA_API_TOKEN"
+    },
+    {
+      "key": "JIRA_EMAIL",
+      "label": "Your Jira Email",
+      "help": "The email address you use to log in to Jira",
+      "help_url": "https://id.atlassian.com/manage-profile",
+      "maps_to": "env.JIRA_EMAIL"
+    },
+    {
+      "key": "JIRA_URL",
+      "label": "Jira Base URL",
+      "help": "Your Jira instance URL, e.g. https://yourcompany.atlassian.net",
+      "help_url": "https://support.atlassian.com/jira-software-cloud/",
+      "maps_to": "env.JIRA_URL"
+    },
+    {
+      "key": "FIGMA_API_KEY",
+      "label": "Figma Personal Access Token",
+      "help": "In Figma, go to Account Settings → Personal access tokens → Generate new token",
+      "help_url": "https://www.figma.com/settings",
+      "maps_to": "env.FIGMA_API_KEY"
+    }
+  ],
+  "repos": [],
+  "scripts": [],
+  "tour": [
+    {
+      "title": "Welcome to your AI stack!",
+      "content": "You've just installed a full-featured Claude Code setup. Here's what's now available:\n\n- **Superpowers** — type /brainstorm, /commit, /deep-research, or /council to unlock advanced workflows\n- **GitHub** — ask Claude to review PRs, create issues, or search your repos\n- **Atlassian** — ask Claude to search Jira, write Confluence pages, or triage bugs\n- **Slack** — ask Claude to summarize channels or draft announcements\n- **Figma** — paste a Figma URL and ask Claude to implement the design\n- **Chrome DevTools** — ask Claude to debug your running web app"
+    },
+    {
+      "title": "Try this first",
+      "content": "Open a project folder and try one of these:\n\n```\n/brainstorm  → plan a new feature with AI assistance\n/commit      → generate a git commit message from your changes\n/deep-research <topic> → multi-source research with a written report\n```\n\nOr ask Claude anything about your codebase — it can read files, run tests, and make changes."
+    }
+  ]
+}
