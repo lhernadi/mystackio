@@ -157,6 +157,16 @@
       "run": "docker pull searx/searx && docker run -d --name searxng -p 8080:8080 --restart unless-stopped searx/searx",
       "description": "Pull and start SearXNG — a self-hosted, privacy-respecting search engine used by the web search hook",
       "when": "post-install"
+    },
+    {
+      "run": "git clone https://github.com/199-biotechnologies/claude-deep-research-skill.git ~/.claude/skills/deep-research",
+      "description": "Install the deep-research skill — an enterprise-grade 8-phase research pipeline with source credibility scoring. Use /deep-research in Claude Code.",
+      "when": "post-install"
+    },
+    {
+      "run": "curl -fsSL https://raw.githubusercontent.com/0xNyk/council-of-high-intelligence/main/install.sh | bash",
+      "description": "Install Council of High Intelligence — 18 AI personas (Aristotle, Feynman, Kahneman, Torvalds & more) deliberate your hardest decisions. Use /council in Claude Code.",
+      "when": "post-install"
     }
   ],
   "tour": [

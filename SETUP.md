@@ -131,7 +131,31 @@ Add the following to the `mcpServers` section of `~/.claude/settings.json`. Repl
 
 ---
 
-## Step 6 — Set up private web search (SearXNG)
+## Step 6 — Install additional skills
+
+### Deep Research skill
+
+An enterprise-grade research pipeline with 8 phases, source credibility scoring, and citation tracking — more powerful than the built-in web search.
+
+```bash
+git clone https://github.com/199-biotechnologies/claude-deep-research-skill.git ~/.claude/skills/deep-research
+```
+
+Use it with `/deep-research <topic>` in Claude Code.
+
+### Council of High Intelligence
+
+18 AI personas (Aristotle, Feynman, Kahneman, Torvalds, and more) deliberate your hardest decisions in a structured multi-round format.
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/0xNyk/council-of-high-intelligence/main/install.sh | bash
+```
+
+Use it with `/council` in Claude Code.
+
+---
+
+## Step 7 — Set up private web search (SearXNG)
 
 This gives Claude private, local web search. No search queries leave your machine.
 
@@ -183,7 +207,7 @@ From now on, whenever Claude searches the web, it uses your local SearXNG instea
 
 ---
 
-## Step 7 — Verify everything works
+## Step 8 — Verify everything works
 
 Open Claude Code in any project folder and try:
 
