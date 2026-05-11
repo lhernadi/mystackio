@@ -16,12 +16,17 @@
       "id": "node",
       "type": "homebrew-cask",
       "description": "Node.js — required to run MCP servers via npx"
+    },
+    {
+      "id": "docker",
+      "type": "homebrew-cask",
+      "description": "Docker Desktop — required to run SearXNG for private local web search"
     }
   ],
   "plugins": [
     {
       "id": "superpowers@claude-plugins-official",
-      "description": "Superpowers — skills, agents, brainstorming, TDD, planning, and more. The backbone of this stack."
+      "description": "Superpowers — skills, agents, brainstorming, TDD, planning, deep research (/deep-research), and more. The backbone of this stack."
     },
     {
       "id": "github@claude-plugins-official",
@@ -142,11 +147,22 @@
     }
   ],
   "repos": [],
-  "scripts": [],
+  "scripts": [
+    {
+      "run": "mkdir -p ~/.claude/scripts && curl -fsSL https://raw.githubusercontent.com/lhernadi/mystackio/main/scripts/websearch.sh -o ~/.claude/scripts/websearch.sh && chmod +x ~/.claude/scripts/websearch.sh",
+      "description": "Install the SearXNG web search hook script into ~/.claude/scripts/",
+      "when": "post-install"
+    },
+    {
+      "run": "docker pull searx/searx && docker run -d --name searxng -p 8080:8080 --restart unless-stopped searx/searx",
+      "description": "Pull and start SearXNG — a self-hosted, privacy-respecting search engine used by the web search hook",
+      "when": "post-install"
+    }
+  ],
   "tour": [
     {
       "title": "Welcome to your AI stack!",
-      "content": "You've just installed a full-featured Claude Code setup. Here's what's now available:\n\n- **Superpowers** — type /brainstorm, /commit, /deep-research, or /council to unlock advanced workflows\n- **GitHub** — ask Claude to review PRs, create issues, or search your repos\n- **Atlassian** — ask Claude to search Jira, write Confluence pages, or triage bugs\n- **Slack** — ask Claude to summarize channels or draft announcements\n- **Figma** — paste a Figma URL and ask Claude to implement the design\n- **Chrome DevTools** — ask Claude to debug your running web app"
+      "content": "You've just installed a full-featured Claude Code setup. Here's what's now available:\n\n- **Superpowers** — type /brainstorm, /commit, /deep-research, or /council to unlock advanced workflows\n- **Web search** — Claude searches via your local SearXNG instance (private, no tracking)\n- **GitHub** — ask Claude to review PRs, create issues, or search your repos\n- **Atlassian** — ask Claude to search Jira, write Confluence pages, or triage bugs\n- **Slack** — ask Claude to summarize channels or draft announcements\n- **Figma** — paste a Figma URL and ask Claude to implement the design\n- **Chrome DevTools** — ask Claude to debug your running web app"
     },
     {
       "title": "Try this first",
